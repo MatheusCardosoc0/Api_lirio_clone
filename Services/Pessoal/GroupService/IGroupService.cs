@@ -1,4 +1,4 @@
-﻿namespace Api.Services.Group
+﻿namespace Api.Services.Pessoal.GroupService
 {
     public interface IGroupService
     {

@@ -1,32 +1,32 @@
 ﻿using Api.Models.GroupModel;
 using MongoDB.Driver;
 
-namespace Api.Services.Group
+namespace Api.Services.Pessoal.GroupService
 {
     public class GroupService : IGroupService
     {
-        private readonly IMongoCollection<Models.GroupModel.Group> _group;
+        private readonly IMongoCollection<Group> _group;
 
         public GroupService(IGroupStoreDatbaseSettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _group = database.GetCollection<Models.GroupModel.Group>(settings.GroupCollectionName);
+            _group = database.GetCollection<Group>(settings.GroupCollectionName);
         }
 
-        public Models.GroupModel.Group Create(Models.GroupModel.Group group)
+        public Group Create(Group group)
         {
             _group.InsertOne(group);
             return group;
         }
 
-        public List<Models.GroupModel.Group> Get()
+        public List<Group> Get()
         {
             return _group.Find(group => true).ToList();
         }
 
-        public Models.GroupModel.Group Get(string id)
+        public Group Get(string id)
         {
-            return _group.Find(group => group.Id == id ).FirstOrDefault();
+            return _group.Find(group => group.Id == id).FirstOrDefault();
         }
 
         public void Remove(string id)
@@ -34,7 +34,7 @@ namespace Api.Services.Group
             _group.DeleteOne(group => group.Id == id);
         }
 
-        public void Update(string id, Models.GroupModel.Group group)
+        public void Update(string id, Group group)
         {
             _group.ReplaceOne(group => group.Id == id, group);
         }

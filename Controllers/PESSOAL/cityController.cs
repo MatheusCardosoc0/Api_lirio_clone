@@ -1,10 +1,10 @@
 ﻿using Api.Models.CityModel;
-using Api.Services.CityService;
+using Api.Services.Pessoal.CityService;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Api.Controllers
+namespace Api.Controllers.PESSOAL
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -29,7 +29,7 @@ namespace Api.Controllers
         {
             var city = cityService.Get(id);
 
-            if(city == null)
+            if (city == null)
             {
                 return NotFound($"City with id = {id} not exist");
             }
@@ -51,14 +51,14 @@ namespace Api.Controllers
         public ActionResult Put(string id, [FromBody] City city)
         {
             var existingCity = cityService.Get(id);
-            
-            if(existingCity == null)
+
+            if (existingCity == null)
             {
                 return NotFound($"City with id = {id} not found");
             }
 
             cityService.Update(id, city);
-            return NoContent(); 
+            return NoContent();
 
         }
 
@@ -68,7 +68,7 @@ namespace Api.Controllers
         {
             var existingCity = cityService.Get(id);
 
-            if( existingCity == null)
+            if (existingCity == null)
             {
                 return NotFound($"City with id = {id} not exist");
             }

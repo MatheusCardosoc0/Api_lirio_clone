@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace Api.Controllers
+namespace Api.Controllers.Assets
 {
     [Route("api/[controller]")]
     [ApiController]

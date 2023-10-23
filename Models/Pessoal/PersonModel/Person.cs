@@ -8,7 +8,7 @@ namespace Api.Models.PersonModel
     public class Person
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)] // Use ObjectId para representar o ID.
+        [BsonRepresentation(BsonType.ObjectId)] 
         public string Id { get; set; } = ObjectId.GenerateNewId().ToString(); // Gere um ID único para a pessoa.
 
         [BsonElement("nameless")]
@@ -19,6 +19,10 @@ namespace Api.Models.PersonModel
         public string CPF { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
         public string BirthDate { get; set; } = string.Empty;
+        public string IBGE { get; set; } = string.Empty;
+        public string Razao { get; set; } = string.Empty;
+        public string InscricaoEstadual { get; set; } = string.Empty;
+        public string CEP { get; set; } = string.Empty;
 
         public Group Group { get; set; }
 

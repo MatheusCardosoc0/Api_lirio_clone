@@ -1,4 +1,4 @@
-﻿namespace Api.Services.Person
+﻿namespace Api.Services.Pessoal.PersonService
 {
     public interface IPersonService
     {

@@ -1,11 +1,10 @@
 ﻿using Api.Models.GroupModel;
-using Api.Services.Group;
+using Api.Services.Pessoal.GroupService;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.FileProviders;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Api.Controllers
+namespace Api.Controllers.PESSOAL
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -31,7 +30,7 @@ namespace Api.Controllers
         {
             var group = groupService.Get(id);
 
-            if(group == null)
+            if (group == null)
             {
                 return NotFound($"Grou with id = {id} not found");
             }
@@ -54,7 +53,7 @@ namespace Api.Controllers
         {
             var existingGroup = groupService.Get(id);
 
-            if(existingGroup == null)
+            if (existingGroup == null)
             {
                 return NotFound($"Group with id = {id} not exist");
             }

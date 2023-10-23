@@ -1,16 +1,16 @@
 ﻿using Api.Models.CityModel;
 using MongoDB.Driver;
 
-namespace Api.Services.CityService
+namespace Api.Services.Pessoal.CityService
 {
     public class CityService : ICityService
     {
-        private readonly IMongoCollection<Models.CityModel.City> _city;
+        private readonly IMongoCollection<City> _city;
 
         public CityService(ICityStoreDatabaseSettings settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _city = database.GetCollection<Models.CityModel.City>(settings.CityCollectionName);
+            _city = database.GetCollection<City>(settings.CityCollectionName);
         }
         public City Create(City city)
         {

@@ -1,10 +1,10 @@
 ﻿using Api.Models.PersonModel;
-using Api.Services.Person;
+using Api.Services.Pessoal.PersonService;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Api.Controllers
+namespace Api.Controllers.PESSOAL
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -29,7 +29,7 @@ namespace Api.Controllers
         {
             var user = userService.Get(id);
 
-            if(user == null)
+            if (user == null)
             {
                 return NotFound($"User with id = {id} not found");
             }
@@ -43,7 +43,7 @@ namespace Api.Controllers
         {
             userService.Create(user);
 
-            return CreatedAtAction(nameof(Get), new { id = user.Id }, user); 
+            return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
         }
 
         // PUT api/<UserController>/5
@@ -52,7 +52,7 @@ namespace Api.Controllers
         {
             var existingUser = userService.Get(id);
 
-            if(existingUser == null)
+            if (existingUser == null)
             {
                 return NotFound($"User with id = {id} not exist");
             }
@@ -68,7 +68,7 @@ namespace Api.Controllers
         {
             var user = userService.Get(id);
 
-            if(user == null)
+            if (user == null)
             {
                 return NotFound($"User with Id = {id} bit found");
             }
