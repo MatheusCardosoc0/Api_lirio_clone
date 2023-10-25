@@ -1,6 +1,4 @@
-﻿
-
-using Api.Models.CityModel;
+﻿using Api.Models.CityModel;
 
 namespace Api.Services.Pessoal.CityService
 {

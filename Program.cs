@@ -10,6 +10,11 @@ using Api.Models.GroupModel;
 using Api.Models.Materiais.ProductModel;
 using Api.Models.Materiais.GroupProductModel;
 using Api.Services.Materiais.GrouProductService;
+using Api.Models.PaymentTermsModel;
+using Api.Services.Financeiro.PaymentTermsServices;
+using Api.Services.Financeiro.PaymentTermsService.PaymentTermsService;
+using Api.Models.Financeiro.CoinsModel;
+using Api.Services.Financeiro.CoinsService;
 
 namespace Api
 {
@@ -21,7 +26,7 @@ namespace Api
 
             // Add services to the container.
 
-            // PESSOAL ===============================================
+            //=================== PESSOAL ===========================================================================
 
             // For Person
             builder.Services.Configure<PersonStoreDatbaseSettings>(
@@ -31,6 +36,7 @@ namespace Api
             builder.Services.AddSingleton<IMongoClient>(sp =>
               new MongoClient(builder.Configuration.GetValue<string>(
                   "PersonStoreDatbaseSettings:ConnectionString")));
+            builder.Services.AddScoped<IPersonService, PersonService>();
 
             // For City
             builder.Services.Configure<CityStoreDatabaseSettings>(
@@ -40,6 +46,7 @@ namespace Api
             builder.Services.AddSingleton<IMongoClient>(sp =>
               new MongoClient(builder.Configuration.GetValue<string>(
                   "CityStoreDatabaseSettings:ConnectionString")));
+            builder.Services.AddScoped<ICityService, CityService>();
 
             // For Group
             builder.Services.Configure<GroupStoreDatbaseSettings>(
@@ -49,8 +56,9 @@ namespace Api
             builder.Services.AddSingleton<IMongoClient>(sp =>
              new MongoClient(builder.Configuration.GetValue<string>(
                  "GroupStoreDatbaseSettings:ConnectionString")));
+            builder.Services.AddScoped<IGroupService, GroupService>();
 
-            // MATERIAIS =============================================
+            // ============== MATERIAIS ===============================================================================
 
             // For Product
             builder.Services.Configure<ProductStoreDatabaseSettings>(
@@ -60,6 +68,7 @@ namespace Api
             builder.Services.AddSingleton<IMongoClient>(sp =>
               new MongoClient(builder.Configuration.GetValue<string>(
                   "ProductStoreDatabaseSettings:ConnectionString")));
+            builder.Services.AddScoped<IProductService, ProductService>();
 
             // For GroupProduct
             builder.Services.Configure<GroupProductStoreDatabaseSettings>(
@@ -69,15 +78,31 @@ namespace Api
             builder.Services.AddSingleton<IMongoClient>(sp =>
               new MongoClient(builder.Configuration.GetValue<string>(
                   "GroupProductStoreDatabaseSettings:ConnectionString")));
+            builder.Services.AddScoped<IGroupProductService, GroupProductService>();
+
+            // ============== FINANCEIRO ===============================================================================
+
+            // For PaymentTerms
+            builder.Services.Configure<PaymentTermsStoreDatabaseSettings>(
+               builder.Configuration.GetSection(nameof(PaymentTermsStoreDatabaseSettings)));
+            builder.Services.AddSingleton<IPaymentTermsStoreDatabaseSettings>(sp =>
+              sp.GetRequiredService<IOptions<PaymentTermsStoreDatabaseSettings>>().Value);
+            builder.Services.AddSingleton<IMongoClient>(sp =>
+              new MongoClient(builder.Configuration.GetValue<string>(
+                  "PaymentTermsStoreDatabaseSettings:ConnectionString")));
+            builder.Services.AddScoped<IPaymentTermsService, PaymentTermsService>();
+
+            //For Coins
+            builder.Services.Configure<CoinsStoreDatabaseSettings>(
+               builder.Configuration.GetSection(nameof(CoinsStoreDatabaseSettings)));
+            builder.Services.AddSingleton<ICoinsStoreDatabaseSettings>(sp =>
+              sp.GetRequiredService<IOptions<CoinsStoreDatabaseSettings>>().Value);
+            builder.Services.AddSingleton<IMongoClient>(sp =>
+              new MongoClient(builder.Configuration.GetValue<string>(
+                  "CoinsStoreDatabaseSettings:ConnectionString")));
+            builder.Services.AddScoped<ICoinsService, CoinsService>();
 
             //------------------------------
-
-            builder.Services.AddScoped<IPersonService, PersonService>();
-            builder.Services.AddScoped<IGroupService, GroupService>();
-            builder.Services.AddScoped<ICityService, CityService>();
-
-            builder.Services.AddScoped<IProductService, ProductService>();
-            builder.Services.AddScoped<IGroupProductService, GroupProductService>();
 
             builder.Services.AddCors(options =>
             {

@@ -1,11 +1,13 @@
-﻿namespace Api.Services.Pessoal.PersonService
+﻿using Api.Models.PersonModel;
+
+namespace Api.Services.Pessoal.PersonService
 {
     public interface IPersonService
     {
-        List<Models.PersonModel.Person> Get();
-        Models.PersonModel.Person Get(string id);
-        Models.PersonModel.Person Create(Models.PersonModel.Person user);
-        void Update(string id, Models.PersonModel.Person user);
+        List<Person> Get();
+        Person Get(string id);
+        Person Create(Models.PersonModel.Person user);
+        void Update(string id, Person user);
         void Remove(string id);
     }
 }
