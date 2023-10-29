@@ -1,4 +1,4 @@
-﻿using Api.Models.Materiais.ProductModel;
+﻿using Api.Models.Materiais;
 using Api.Services.Materiais.ProductService;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,5 +1,5 @@
-﻿using Api.Models.Materiais.ProductModel;
-using Api.Models.PersonModel;
+﻿using Api.Models.Materiais;
+using Api.Models.Pessoal;
 
 namespace Api.Models.Vendas.CounterSales
 {

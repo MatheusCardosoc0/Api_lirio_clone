@@ -1,4 +1,4 @@
-﻿using Api.Models.CityModel;
+﻿using Api.Models.Pessoal;
 using Api.Services.Pessoal.CityService;
 using Microsoft.AspNetCore.Mvc;
 

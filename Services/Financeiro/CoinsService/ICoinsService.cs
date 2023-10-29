@@ -1,4 +1,4 @@
-﻿using Api.Models.Financeiro.CoinsModel;
+﻿using Api.Models.Financeiro;
 
 namespace Api.Services.Financeiro.CoinsService
 {

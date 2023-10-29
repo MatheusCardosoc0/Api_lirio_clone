@@ -1,4 +1,4 @@
-﻿using Api.Models.Materiais.GroupProductModel;
+﻿using Api.Models.Materiais;
 using Api.Services.Materiais.GrouProductService;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;

@@ -1,4 +1,5 @@
-﻿using Api.Models.CityModel;
+﻿using Api.Models.Pessoal;
+using Api.Utilities;
 using MongoDB.Driver;
 
 namespace Api.Services.Pessoal.CityService
@@ -7,10 +8,10 @@ namespace Api.Services.Pessoal.CityService
     {
         private readonly IMongoCollection<City> _city;
 
-        public CityService(ICityStoreDatabaseSettings settings, IMongoClient mongoClient)
+        public CityService(ISystemDBConfiguration settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _city = database.GetCollection<City>(settings.CityCollectionName);
+            _city = database.GetCollection<City>(settings.Collections.PESSOAL.City);
         }
         public City Create(City city)
         {

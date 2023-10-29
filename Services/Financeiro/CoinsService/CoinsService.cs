@@ -1,4 +1,5 @@
-﻿using Api.Models.Financeiro.CoinsModel;
+﻿using Api.Models.Financeiro;
+using Api.Utilities;
 using MongoDB.Driver;
 
 namespace Api.Services.Financeiro.CoinsService
@@ -7,10 +8,10 @@ namespace Api.Services.Financeiro.CoinsService
     {
         private readonly IMongoCollection<Coins> _coins;
 
-        public CoinsService(ICoinsStoreDatabaseSettings coinsStoreDatabaseSettings, IMongoClient mongoClient)
+        public CoinsService(ISystemDBConfiguration coinsStoreDatabaseSettings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(coinsStoreDatabaseSettings.DatabaseName);
-            _coins = database.GetCollection<Coins>(coinsStoreDatabaseSettings.CoinsCollectionName);
+            _coins = database.GetCollection<Coins>(coinsStoreDatabaseSettings.Collections.FINANCEIRO.Coins);
         }
         public void Delete(string id)
         {

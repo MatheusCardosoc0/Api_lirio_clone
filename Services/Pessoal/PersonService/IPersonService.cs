@@ -1,4 +1,4 @@
-﻿using Api.Models.PersonModel;
+﻿using Api.Models.Pessoal;
 
 namespace Api.Services.Pessoal.PersonService
 {
@@ -6,7 +6,7 @@ namespace Api.Services.Pessoal.PersonService
     {
         List<Person> Get();
         Person Get(string id);
-        Person Create(Models.PersonModel.Person user);
+        Person Create(Person user);
         void Update(string id, Person user);
         void Remove(string id);
     }

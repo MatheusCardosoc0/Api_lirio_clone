@@ -1,31 +1,31 @@
-﻿using Api.Models.Pessoal;
-using Api.Services.Pessoal.PersonService;
+﻿
+using Api.Models.Utilitarios;
+using Api.Services.Utilitarios;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace Api.Controllers.PESSOAL
+namespace Api.Controllers.UTILITARIOS
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class personController : ControllerBase
+    public class users_systemController : ControllerBase
     {
-        private readonly IPersonService userService;
+        private readonly IUserSystemService userService;
 
-        public personController(IPersonService userService)
+        public users_systemController(IUserSystemService userService)
         {
             this.userService = userService;
         }
         // GET: api/<UserController>
         [HttpGet]
-        public ActionResult<List<Person>> Get()
+        public ActionResult<List<UserSystem>> Get()
         {
             return userService.Get();
         }
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public ActionResult<Person> Get(string id)
+        public ActionResult<UserSystem> Get(string id)
         {
             var user = userService.Get(id);
 
@@ -39,16 +39,16 @@ namespace Api.Controllers.PESSOAL
 
         // POST api/<UserController>
         [HttpPost]
-        public ActionResult<Person> Post([FromBody] Person user)
+        public ActionResult<UserSystem> Post([FromBody] UserSystem user)
         {
-            userService.Create(user);
+            userService.Post(user);
 
-            return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
+            return CreatedAtAction(nameof(Get), new { id = user.id }, user);
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] Person user)
+        public ActionResult Put(string id, [FromBody] UserSystem user)
         {
             var existingUser = userService.Get(id);
 
@@ -57,7 +57,7 @@ namespace Api.Controllers.PESSOAL
                 return NotFound($"User with id = {id} not exist");
             }
 
-            userService.Update(id, user);
+            userService.Put(id, user);
 
             return NoContent();
         }
@@ -70,12 +70,13 @@ namespace Api.Controllers.PESSOAL
 
             if (user == null)
             {
-                return NotFound($"User with Id = {id} bit found");
+                return NotFound($"User with id = {id} bit found");
             }
 
-            userService.Remove(user.Id);
+            userService.Delete(user.id);
 
-            return Ok($"User with Id = {id} deleted");
+            return Ok($"User with id = {id} deleted");
         }
     }
 }
+

@@ -1,14 +1,12 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Api.Models.GroupModel;
-using Api.Models.CityModel;
 
-namespace Api.Models.PersonModel
+namespace Api.Models.Pessoal
 {
     public class Person
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)] 
+        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; } = ObjectId.GenerateNewId().ToString(); // Gere um ID único para a pessoa.
 
         [BsonElement("nameless")]

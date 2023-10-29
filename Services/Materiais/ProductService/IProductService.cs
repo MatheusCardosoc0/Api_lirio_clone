@@ -1,4 +1,4 @@
-﻿using Api.Models.Materiais.ProductModel;
+﻿using Api.Models.Materiais;
 
 namespace Api.Services.Materiais.ProductService
 {

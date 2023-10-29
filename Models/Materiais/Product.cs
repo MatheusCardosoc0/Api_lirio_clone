@@ -1,7 +1,6 @@
-﻿using Api.Models.Materiais.GroupProductModel;
-using Api.Utilities;
+﻿using Api.Utilities;
 
-namespace Api.Models.Materiais.ProductModel
+namespace Api.Models.Materiais
 {
     public class Product
     {

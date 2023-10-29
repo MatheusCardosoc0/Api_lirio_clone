@@ -1,4 +1,5 @@
-﻿using Api.Models.PersonModel;
+﻿using Api.Models.Pessoal;
+using Api.Utilities;
 using MongoDB.Driver;
 
 namespace Api.Services.Pessoal.PersonService
@@ -7,10 +8,10 @@ namespace Api.Services.Pessoal.PersonService
     {
         private readonly IMongoCollection<Person> _users;
 
-        public PersonService(IPersonStoreDatbaseSettings settings, IMongoClient mongoClient)
+        public PersonService(ISystemDBConfiguration settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _users = database.GetCollection<Person>(settings.PersonCollectionName);
+            _users = database.GetCollection<Person>(settings.Collections.PESSOAL.Person);
         }
 
 

@@ -1,4 +1,5 @@
-﻿using Api.Models.GroupModel;
+﻿using Api.Models.Pessoal;
+using Api.Utilities;
 using MongoDB.Driver;
 
 namespace Api.Services.Pessoal.GroupService
@@ -7,10 +8,10 @@ namespace Api.Services.Pessoal.GroupService
     {
         private readonly IMongoCollection<Group> _group;
 
-        public GroupService(IGroupStoreDatbaseSettings settings, IMongoClient mongoClient)
+        public GroupService(ISystemDBConfiguration settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _group = database.GetCollection<Group>(settings.GroupCollectionName);
+            _group = database.GetCollection<Group>(settings.Collections.PESSOAL.Group);
         }
 
         public Group Create(Group group)

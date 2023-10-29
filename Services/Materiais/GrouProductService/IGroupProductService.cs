@@ -1,4 +1,4 @@
-﻿using Api.Models.Materiais.GroupProductModel;
+﻿using Api.Models.Materiais;
 
 namespace Api.Services.Materiais.GrouProductService
 {

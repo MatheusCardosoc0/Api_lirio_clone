@@ -1,5 +1,6 @@
-﻿using Api.Models.PaymentTermsModel;
+﻿using Api.Models.Financeiro;
 using Api.Services.Financeiro.PaymentTermsService.PaymentTermsService;
+using Api.Utilities;
 using MongoDB.Driver;
 
 namespace Api.Services.Financeiro.PaymentTermsServices
@@ -8,10 +9,10 @@ namespace Api.Services.Financeiro.PaymentTermsServices
     {
         private readonly IMongoCollection<PaymentTerms> _paymentTerms;
 
-        public PaymentTermsService(IPaymentTermsStoreDatabaseSettings paymentTermsStoreDatabaseSettings, IMongoClient mongoClient)
+        public PaymentTermsService(ISystemDBConfiguration paymentTermsStoreDatabaseSettings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(paymentTermsStoreDatabaseSettings.DatabaseName);
-            _paymentTerms = database.GetCollection<PaymentTerms>(paymentTermsStoreDatabaseSettings.PaymentTermsCollectionName);
+            _paymentTerms = database.GetCollection<PaymentTerms>(paymentTermsStoreDatabaseSettings.Collections.FINANCEIRO.PaymentTerms);
         }
         public void Delete(string id)
         {

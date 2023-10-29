@@ -1,4 +1,4 @@
-﻿using Api.Models.Financeiro.CoinsModel;
+﻿using Api.Models.Financeiro;
 using Api.Services.Financeiro.CoinsService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +30,7 @@ namespace Api.Controllers.FINANCEIRO
         {
             var existingCoin = _coinsService.Get(id);
 
-            if(existingCoin != null)
+            if(existingCoin == null)
             {
                 return NotFound($"Coin not exist");
             }
@@ -51,7 +51,7 @@ namespace Api.Controllers.FINANCEIRO
         {
             var existingCoin = _coinsService.Get(id);
 
-            if (existingCoin != null)
+            if (existingCoin == null)
             {
                 return NotFound($"Coin not exist");
             }
@@ -66,7 +66,7 @@ namespace Api.Controllers.FINANCEIRO
         {
             var coin = _coinsService.Get(id);
 
-            if (coin != null)
+            if (coin == null)
             {
                 return NotFound($"Coin not exist");
             }

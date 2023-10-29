@@ -1,9 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Api.Models;
-using Api.Models.PersonModel;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.Assets
 {

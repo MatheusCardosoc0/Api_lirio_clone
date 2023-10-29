@@ -1,5 +1,5 @@
 ﻿
-using Api.Models.PaymentTermsModel;
+using Api.Models.Financeiro;
 using Api.Services.Financeiro.PaymentTermsService.PaymentTermsService;
 using Microsoft.AspNetCore.Mvc;
 

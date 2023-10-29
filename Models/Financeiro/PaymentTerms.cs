@@ -1,11 +1,11 @@
 ﻿using Api.Utilities;
 
-namespace Api.Models.Financeiro.CoinsModel
+namespace Api.Models.Financeiro
 {
-    public class Coins
+    public class PaymentTerms
     {
         public string Id { get; set; } = GeneratedId.GenerateUniqueStringId();
         public string Name { get; set; } = string.Empty;
-        public bool IsUseCreditLimit { get; set; } = false;
+        public int Installments { get; set; } = 1;
     }
 }

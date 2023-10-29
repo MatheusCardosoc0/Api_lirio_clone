@@ -1,4 +1,5 @@
-﻿using Api.Models.Materiais.GroupProductModel;
+﻿using Api.Models.Materiais;
+using Api.Utilities;
 using MongoDB.Driver;
 
 namespace Api.Services.Materiais.GrouProductService
@@ -7,10 +8,10 @@ namespace Api.Services.Materiais.GrouProductService
     {
         private readonly IMongoCollection<GroupProduct> _groupProduct;
 
-        public GroupProductService(IGroupProductStoreDatabaseSettings settings, IMongoClient mongoClient)
+        public GroupProductService(ISystemDBConfiguration settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _groupProduct = database.GetCollection<GroupProduct>(settings.GroupProductCollectionName);
+            _groupProduct = database.GetCollection<GroupProduct>(settings.Collections.MATERIAIS.GroupProduct);
         }
         public GroupProduct Create( GroupProduct product)
         {

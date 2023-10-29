@@ -1,11 +1,13 @@
-﻿namespace Api.Services.Pessoal.GroupService
+﻿using Api.Models.Pessoal;
+
+namespace Api.Services.Pessoal.GroupService
 {
     public interface IGroupService
     {
-        List<Models.GroupModel.Group> Get();
-        Models.GroupModel.Group Get(string id);
-        Models.GroupModel.Group Create(Models.GroupModel.Group user);
-        void Update(string id, Models.GroupModel.Group user);
+        List<Group> Get();
+        Group Get(string id);
+        Group Create(Group user);
+        void Update(string id, Group user);
         void Remove(string id);
     }
 }

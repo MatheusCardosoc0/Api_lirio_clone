@@ -1,4 +1,4 @@
-﻿using Api.Models.GroupModel;
+﻿using Api.Models.Pessoal;
 using Api.Services.Pessoal.GroupService;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,4 +1,4 @@
-﻿using Api.Models.PaymentTermsModel;
+﻿using Api.Models.Financeiro;
 
 namespace Api.Services.Financeiro.PaymentTermsService.PaymentTermsService
 {
