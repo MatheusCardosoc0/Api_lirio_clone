@@ -6,7 +6,7 @@
         public PessoalCollections PESSOAL { get; set; }
         public MateriaisCollections MATERIAIS { get; set; }
         public FinanceiroCollections FINANCEIRO { get; set; }
-        public UtilitariosCollections UTILITÁRIOS { get; set; }
+        public UtilitariosCollections UTILITARIOS { get; set; }
     }
 
     public class PessoalCollections

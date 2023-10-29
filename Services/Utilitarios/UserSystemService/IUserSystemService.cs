@@ -9,5 +9,6 @@ namespace Api.Services.Utilitarios
         UserSystem Post(UserSystem userSystem);
         void Put(string id, UserSystem userSystem);
         void Delete(string id);
+        UserSystem Authenticate(string username, string password);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Api.Models.Materiais;
 using Api.Services.Materiais.GrouProductService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 
@@ -7,6 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Api.Controllers.MATERIAIS
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class group_productController : ControllerBase

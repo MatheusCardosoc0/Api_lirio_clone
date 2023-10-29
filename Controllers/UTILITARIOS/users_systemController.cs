@@ -1,11 +1,14 @@
 ﻿
+using Api.Models.Pessoal;
 using Api.Models.Utilitarios;
 using Api.Services.Utilitarios;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.UTILITARIOS
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class users_systemController : ControllerBase
@@ -39,11 +42,10 @@ namespace Api.Controllers.UTILITARIOS
 
         // POST api/<UserController>
         [HttpPost]
-        public ActionResult<UserSystem> Post([FromBody] UserSystem user)
+        public ActionResult<UserSystem> Post([FromBody] UserSystem userSystem)
         {
-            userService.Post(user);
-
-            return CreatedAtAction(nameof(Get), new { id = user.id }, user);
+            userService.Post(userSystem);
+            return userSystem;
         }
 
         // PUT api/<UserController>/5
@@ -73,7 +75,7 @@ namespace Api.Controllers.UTILITARIOS
                 return NotFound($"User with id = {id} bit found");
             }
 
-            userService.Delete(user.id);
+            userService.Delete(user.Id);
 
             return Ok($"User with id = {id} deleted");
         }

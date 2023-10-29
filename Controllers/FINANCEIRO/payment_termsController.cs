@@ -1,12 +1,14 @@
 ﻿
 using Api.Models.Financeiro;
 using Api.Services.Financeiro.PaymentTermsService.PaymentTermsService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Api.Controllers.FINANCEIRO
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class payment_termsController : ControllerBase

@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Api.Utilities;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Api.Models.Pessoal
@@ -7,7 +8,7 @@ namespace Api.Models.Pessoal
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; } = ObjectId.GenerateNewId().ToString(); // Gere um ID único para a pessoa.
+        public string Id { get; set; } = GeneratedId.GenerateUniqueStringId(); // Gere um ID único para a pessoa.
 
         [BsonElement("nameless")]
         public string Name { get; set; } = string.Empty;

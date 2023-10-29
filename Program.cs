@@ -76,6 +76,7 @@ namespace Api
             // UTILITÁRIOS
             builder.Services.AddScoped<IUserSystemService, UserSystemService>();
 
+            builder.Services.AddScoped<TokenService>();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
