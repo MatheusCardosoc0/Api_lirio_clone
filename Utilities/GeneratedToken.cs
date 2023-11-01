@@ -19,7 +19,6 @@ public class TokenService
         {
             new Claim(ClaimTypes.Name, user.Name),
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            // You can add more claims if needed
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWTSettings:key"]));
@@ -32,5 +31,42 @@ public class TokenService
             signingCredentials: creds);
 
         return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+
+    public string ValidateToken(string token)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var validationParameters = GetValidationParameters();
+
+        SecurityToken validatedToken;
+        try
+        {
+            var principal = tokenHandler.ValidateToken(token, validationParameters, out validatedToken);
+            var nameClaim = principal?.Claims?.FirstOrDefault(c => c.Type == ClaimTypes.Name);
+
+            return nameClaim?.Value;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    private TokenValidationParameters GetValidationParameters()
+    {
+        return new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWTSettings:key"])),
+
+            ValidateIssuer = true,
+            ValidIssuer = _config["JWTSettings:Issuer"],
+
+            ValidateAudience = true,
+            ValidAudience = _config["JWTSettings:Audience"],
+
+            ValidateLifetime = true,
+
+        };
     }
 }

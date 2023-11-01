@@ -14,6 +14,7 @@ using Api.Services.Pessoal.GroupService;
 using Api.Services.Pessoal.PersonService;
 using Api.Services.Utilitarios.UserSystemService;
 using Api.Services.Utilitarios;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Api
 {
@@ -81,6 +82,7 @@ namespace Api
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwagerOptions>();
 
             var app = builder.Build();
 

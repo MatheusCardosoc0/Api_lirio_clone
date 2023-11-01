@@ -29,5 +29,17 @@ namespace Api.Controllers.AUTORIZACAO
 
             return Ok(new { token });
         }
+
+        [HttpGet("{token}")]
+        public ActionResult ValidateToken(string token)
+        {
+            if(string.IsNullOrEmpty(token)) return Unauthorized();
+
+            var userName = _tokenService.ValidateToken(token);
+
+            if(userName == null) return Unauthorized();
+
+            return Ok(new { userName });
+        }
     }
 }
