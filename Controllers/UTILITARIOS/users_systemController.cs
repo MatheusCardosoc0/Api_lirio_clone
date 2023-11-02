@@ -1,9 +1,7 @@
 ﻿
-using Api.Models.Pessoal;
 using Api.Models.Utilitarios;
 using Api.Services.Utilitarios;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.UTILITARIOS

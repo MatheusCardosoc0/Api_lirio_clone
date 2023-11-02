@@ -21,8 +21,7 @@ namespace Api.Services.Utilitarios.UserSystemService
             if (user == null)
                 return null;
 
-            // Verificar a senha usando BCrypt
-            bool validPassword = BCrypt.Net.BCrypt.Verify(password, user.Password);  // Modifique aqui
+            bool validPassword = BCrypt.Net.BCrypt.Verify(password, user.Password);
             if (!validPassword)
                 return null;
 
@@ -66,7 +65,32 @@ namespace Api.Services.Utilitarios.UserSystemService
 
         public void Put(string id, UserSystem userSystem)
         {
-            _users.ReplaceOne(user => user.Id == id, userSystem);
+            var existingUser = _users.Find(user => user.Id == id).FirstOrDefault();
+
+            if (existingUser == null)
+            {
+                throw new Exception("User not found."); 
+            }
+
+            if (!string.IsNullOrWhiteSpace(userSystem.Password))
+            {
+                userSystem.Password = BCrypt.Net.BCrypt.HashPassword(userSystem.Password);
+            }
+            else
+            {
+                userSystem.Password = existingUser.Password;
+            }
+
+            var update = Builders<UserSystem>.Update
+                .Set(u => u.Name, userSystem.Name)
+                .Set(u => u.Person, userSystem.Person);
+
+            if (!string.IsNullOrWhiteSpace(userSystem.Password))
+            {
+                update = update.Set(u => u.Password, userSystem.Password);
+            }
+
+            _users.UpdateOne(user => user.Id == id, update);
         }
     }
 }
