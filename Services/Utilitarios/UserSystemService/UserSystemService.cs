@@ -2,6 +2,7 @@
 using Api.Utilities;
 using MongoDB.Driver;
 using BCrypt.Net;
+using Api.Models.Financeiro;
 
 namespace Api.Services.Utilitarios.UserSystemService
 {
@@ -28,7 +29,7 @@ namespace Api.Services.Utilitarios.UserSystemService
             return user;
         }
 
-        public void Delete(string id)
+        public void Delete(int id)
         {
             _users.DeleteOne(user => user.Id == id);
         }
@@ -43,7 +44,7 @@ namespace Api.Services.Utilitarios.UserSystemService
             return users;
         }
 
-        public UserSystem Get(string id)
+        public UserSystem Get(int id)
         {
             var user = _users.Find(user => user.Id == id).FirstOrDefault();
             if (user != null)
@@ -56,6 +57,7 @@ namespace Api.Services.Utilitarios.UserSystemService
 
         public UserSystem Post(UserSystem userSystem)
         {
+            userSystem.Id = GeneratedIdSequence.GenerateNumericId(_users.Database, "Users");
             userSystem.Password = BCrypt.Net.BCrypt.HashPassword(userSystem.Password);
 
             _users.InsertOne(userSystem);
@@ -63,7 +65,7 @@ namespace Api.Services.Utilitarios.UserSystemService
             return userSystem;
         }
 
-        public void Put(string id, UserSystem userSystem)
+        public void Put(int id, UserSystem userSystem)
         {
             var existingUser = _users.Find(user => user.Id == id).FirstOrDefault();
 

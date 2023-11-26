@@ -5,9 +5,9 @@ namespace Api.Services.Materiais.GrouProductService
     public interface IGroupProductService
     {
         List<GroupProduct> Get();
-        GroupProduct Get(string id);
+        GroupProduct Get(int id);
         GroupProduct Create( GroupProduct product);
-        void Update(string id, GroupProduct product);
-        void Delete(string id);
+        void Update(int id, GroupProduct product);
+        void Delete(int id);
     }
 }

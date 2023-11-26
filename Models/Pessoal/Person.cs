@@ -1,5 +1,4 @@
-﻿using Api.Utilities;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Api.Models.Pessoal
@@ -7,21 +6,24 @@ namespace Api.Models.Pessoal
     public class Person
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; } = GeneratedId.GenerateUniqueStringId(); // Gere um ID único para a pessoa.
-
+        public int Id { get; set; }
         [BsonElement("nameless")]
-        public string Name { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string Phone { get; set; } = string.Empty;
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
         public int Age { get; set; }
-        public string CPF { get; set; } = string.Empty;
-        public string Address { get; set; } = string.Empty;
-        public string BirthDate { get; set; } = string.Empty;
-        public string IBGE { get; set; } = string.Empty;
-        public string Razao { get; set; } = string.Empty;
-        public string InscricaoEstadual { get; set; } = string.Empty;
-        public string CEP { get; set; } = string.Empty;
+        public string CPF { get; set; }
+        public string Address { get; set; }
+        public string BirthDate { get; set; }
+        public string IBGE { get; set; }
+        public string Razao { get; set; }
+        public string InscricaoEstadual { get; set; }
+        public string CEP { get; set; }
+        public string? urlImage { get; set; } = string.Empty;
+        public bool? isBlocked { get; set; } = false;
+        public string? MaritalStatus { get; set; } = string.Empty;
+        public string? Habilities { get; set; } = string.Empty;
+        public string? Description { get; set; } = string.Empty;
 
         public Group Group { get; set; }
 

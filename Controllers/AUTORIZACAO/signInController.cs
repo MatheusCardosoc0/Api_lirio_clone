@@ -39,7 +39,7 @@ namespace Api.Controllers.AUTORIZACAO
 
             if(userName == null) return Unauthorized();
 
-            return Ok(new { userName });
+            return Ok(userName);
         }
     }
 }

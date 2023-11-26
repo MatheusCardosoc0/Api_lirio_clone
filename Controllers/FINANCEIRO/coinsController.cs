@@ -28,7 +28,7 @@ namespace Api.Controllers.FINANCEIRO
 
         // GET api/<Coins>/5
         [HttpGet("{id}")]
-        public ActionResult<Coins> Get(string id)
+        public ActionResult<Coins> Get(int id)
         {
             var existingCoin = _coinsService.Get(id);
 
@@ -49,7 +49,7 @@ namespace Api.Controllers.FINANCEIRO
 
         // PUT api/<Coins>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] Coins coins)
+        public ActionResult Put(int id, [FromBody] Coins coins)
         {
             var existingCoin = _coinsService.Get(id);
 
@@ -64,7 +64,7 @@ namespace Api.Controllers.FINANCEIRO
 
         // DELETE api/<Coins>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             var coin = _coinsService.Get(id);
 

@@ -1,4 +1,5 @@
-﻿using Api.Models.Pessoal;
+﻿using Api.Models.Financeiro;
+using Api.Models.Pessoal;
 using Api.Utilities;
 using MongoDB.Driver;
 
@@ -15,6 +16,7 @@ namespace Api.Services.Pessoal.CityService
         }
         public City Create(City city)
         {
+            city.Id = GeneratedIdSequence.GenerateNumericId(_city.Database, "City");
             _city.InsertOne(city);
             return city;
         }
@@ -24,17 +26,17 @@ namespace Api.Services.Pessoal.CityService
             return _city.Find(city => true).ToList();
         }
 
-        public City Get(string id)
+        public City Get(int id)
         {
             return _city.Find(city => city.Id == id).FirstOrDefault();
         }
 
-        public void Remove(string id)
+        public void Remove(int id)
         {
             _city.DeleteOne(city => city.Id == id);
         }
 
-        public void Update(string id, City city)
+        public void Update(int id, City city)
         {
             _city.ReplaceOne(city => city.Id == id, city);
         }

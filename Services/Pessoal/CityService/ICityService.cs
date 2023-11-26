@@ -5,9 +5,9 @@ namespace Api.Services.Pessoal.CityService
     public interface ICityService
     {
         List<City> Get();
-        City Get(string id);
+        City Get(int id);
         City Create(City city);
-        void Update(string id, City city);
-        void Remove(string id);
+        void Update(int id, City city);
+        void Remove(int id);
     }
 }

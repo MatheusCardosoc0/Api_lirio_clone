@@ -27,7 +27,7 @@ namespace Api.Controllers.PESSOAL
 
         // GET api/<cityController>/5
         [HttpGet("{id}")]
-        public ActionResult<City> Get(string id)
+        public ActionResult<City> Get(int id)
         {
             var city = cityService.Get(id);
 
@@ -50,7 +50,7 @@ namespace Api.Controllers.PESSOAL
 
         // PUT api/<cityController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] City city)
+        public ActionResult Put(int id, [FromBody] City city)
         {
             var existingCity = cityService.Get(id);
 
@@ -66,7 +66,7 @@ namespace Api.Controllers.PESSOAL
 
         // DELETE api/<cityController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             var existingCity = cityService.Get(id);
 

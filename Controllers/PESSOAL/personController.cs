@@ -27,7 +27,7 @@ namespace Api.Controllers.PESSOAL
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public ActionResult<Person> Get(string id)
+        public ActionResult<Person> Get(int id)
         {
             var user = userService.Get(id);
 
@@ -50,7 +50,7 @@ namespace Api.Controllers.PESSOAL
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] Person user)
+        public ActionResult Put(int id, [FromBody] Person user)
         {
             var existingUser = userService.Get(id);
 
@@ -66,7 +66,7 @@ namespace Api.Controllers.PESSOAL
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             var user = userService.Get(id);
 

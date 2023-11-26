@@ -28,7 +28,7 @@ namespace Api.Controllers.FINANCEIRO
 
         // GET api/<payment_termsController>/5
         [HttpGet("{id}")]
-        public ActionResult<PaymentTerms> Get(string id)
+        public ActionResult<PaymentTerms> Get(int id)
         {
             var exisitingPaymentTerms = _paymentTermsService.Get(id);
 
@@ -50,7 +50,7 @@ namespace Api.Controllers.FINANCEIRO
 
         // PUT api/<payment_termsController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] PaymentTerms paymentTerms)
+        public ActionResult Put(int id, [FromBody] PaymentTerms paymentTerms)
         {
             var exisitingPaymentTerms = _paymentTermsService.Get(id);
 
@@ -66,7 +66,7 @@ namespace Api.Controllers.FINANCEIRO
 
         // DELETE api/<payment_termsController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             var paymentTerms = _paymentTermsService.Get(id);
 

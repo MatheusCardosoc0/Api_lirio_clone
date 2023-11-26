@@ -1,4 +1,5 @@
-﻿using Api.Models.Materiais;
+﻿using Api.Models.Financeiro;
+using Api.Models.Materiais;
 using Api.Utilities;
 using MongoDB.Driver;
 
@@ -14,11 +15,12 @@ namespace Api.Services.Materiais.ProductService
         }
         public Product Create(Product product)
         {
+            product.Id = GeneratedIdSequence.GenerateNumericId(_products.Database, "Product");
             _products.InsertOne(product);
             return product;
         }
 
-        public void Delete(string id)
+        public void Delete(int id)
         {
             _products.DeleteOne(product => product.Id == id);
         }
@@ -27,12 +29,12 @@ namespace Api.Services.Materiais.ProductService
         {
             return _products.Find(product => true).ToList();
         }
-        public Product Get(string id)
+        public Product Get(int id)
         {
             return _products.Find(product => product.Id == id).FirstOrDefault();
         }
 
-        public void Update(string id, Product product)
+        public void Update(int id, Product product)
         {
             _products.ReplaceOne(product => product.Id == id, product);
         }

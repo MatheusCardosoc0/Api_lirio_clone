@@ -27,7 +27,7 @@ namespace Api.Controllers.MATERIAIS
 
         // GET api/<group_productController>/5
         [HttpGet("{id}")]
-        public ActionResult<GroupProduct> Get(string id)
+        public ActionResult<GroupProduct> Get(int id)
         {
             var existingGroupProduct = groupProductService.Get(id);
 
@@ -48,7 +48,7 @@ namespace Api.Controllers.MATERIAIS
 
         // PUT api/<group_productController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] GroupProduct groupProduct)
+        public ActionResult Put(int id, [FromBody] GroupProduct groupProduct)
         {
             var existingGroupProduct = groupProductService.Get(id);
 
@@ -63,7 +63,7 @@ namespace Api.Controllers.MATERIAIS
 
         // DELETE api/<group_productController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             var existingGroupProduct = groupProductService.Get(id);
 

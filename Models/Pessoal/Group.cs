@@ -4,7 +4,7 @@ namespace Api.Models.Pessoal
 {
     public class Group
     {
-        public string Id { get; set; } = GeneratedId.GenerateUniqueStringId();
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

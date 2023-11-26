@@ -1,4 +1,5 @@
-﻿using Api.Models.Pessoal;
+﻿using Api.Models.Financeiro;
+using Api.Models.Pessoal;
 using Api.Utilities;
 using MongoDB.Driver;
 
@@ -6,39 +7,40 @@ namespace Api.Services.Pessoal.PersonService
 {
     public class PersonService : IPersonService
     {
-        private readonly IMongoCollection<Person> _users;
+        private readonly IMongoCollection<Person> _person;
 
         public PersonService(ISystemDBConfiguration settings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _users = database.GetCollection<Person>(settings.Collections.PESSOAL.Person);
+            _person = database.GetCollection<Person>(settings.Collections.PESSOAL.Person);
         }
 
 
         public List<Person> Get()
         {
-            return _users.Find(user => true).ToList();
+            return _person.Find(person => true).ToList();
         }
 
-        public Person Get(string id)
+        public Person Get(int id)
         {
-            return _users.Find(user => user.Id == id).FirstOrDefault();
+            return _person.Find(person => person.Id == id).FirstOrDefault();
         }
 
-        public Person Create(Person user)
+        public Person Create(Person person)
         {
-            _users.InsertOne(user);
-            return user;
+            person.Id = GeneratedIdSequence.GenerateNumericId(_person.Database, "Person");
+            _person.InsertOne(person);
+            return person;
         }
 
-        public void Update(string id, Person user)
+        public void Update(int id, Person person)
         {
-            _users.ReplaceOne(user => user.Id == id, user);
+            _person.ReplaceOne(person => person.Id == id, person);
         }
 
-        public void Remove(string id)
+        public void Remove(int id)
         {
-            _users.DeleteOne(student => student.Id == id);
+            _person.DeleteOne(student => student.Id == id);
         }
     }
 }

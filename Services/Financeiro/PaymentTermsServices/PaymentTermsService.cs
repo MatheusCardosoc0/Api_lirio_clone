@@ -2,6 +2,7 @@
 using Api.Services.Financeiro.PaymentTermsService.PaymentTermsService;
 using Api.Utilities;
 using MongoDB.Driver;
+using System.Drawing;
 
 namespace Api.Services.Financeiro.PaymentTermsServices
 {
@@ -14,7 +15,7 @@ namespace Api.Services.Financeiro.PaymentTermsServices
             var database = mongoClient.GetDatabase(paymentTermsStoreDatabaseSettings.DatabaseName);
             _paymentTerms = database.GetCollection<PaymentTerms>(paymentTermsStoreDatabaseSettings.Collections.FINANCEIRO.PaymentTerms);
         }
-        public void Delete(string id)
+        public void Delete(int id)
         {
             _paymentTerms.DeleteOne(paymentTerms => paymentTerms.Id == id);
         }
@@ -24,18 +25,19 @@ namespace Api.Services.Financeiro.PaymentTermsServices
             return _paymentTerms.Find(paymentTerms => true).ToList();
         }
 
-        public PaymentTerms Get(string id)
+        public PaymentTerms Get(int id)
         {
             return _paymentTerms.Find(paymentTerms => paymentTerms.Id == id).FirstOrDefault();
         }
 
         public PaymentTerms Post(PaymentTerms paymentTerms)
         {
+            paymentTerms.Id = GeneratedIdSequence.GenerateNumericId(_paymentTerms.Database, "PaymentCondition");
             _paymentTerms.InsertOne(paymentTerms);
             return paymentTerms;
         }
 
-        public void Put(string id, PaymentTerms paymentTerms)
+        public void Put(int id, PaymentTerms paymentTerms)
         {
             _paymentTerms.ReplaceOne(paymentTerms => paymentTerms.Id == id, paymentTerms);
         }

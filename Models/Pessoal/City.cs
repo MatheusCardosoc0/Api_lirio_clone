@@ -4,7 +4,7 @@ namespace Api.Models.Pessoal
 {
     public class City
     {
-        public string Id { get; set; } = GeneratedId.GenerateUniqueStringId();
+        public int Id { get; set; }
         public string Name { get; set; }
         public string IBGNumber { get; set; }
         public string State { get; set; }

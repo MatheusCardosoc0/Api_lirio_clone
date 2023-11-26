@@ -28,7 +28,7 @@ namespace Api.Controllers.PESSOAL
 
         // GET api/<groupController>/5
         [HttpGet("{id}")]
-        public ActionResult<Group> Get(string id)
+        public ActionResult<Group> Get(int id)
         {
             var group = groupService.Get(id);
 
@@ -51,7 +51,7 @@ namespace Api.Controllers.PESSOAL
 
         // PUT api/<groupController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] Group group)
+        public ActionResult Put(int id, [FromBody] Group group)
         {
             var existingGroup = groupService.Get(id);
 
@@ -66,7 +66,7 @@ namespace Api.Controllers.PESSOAL
 
         // DELETE api/<groupController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             var group = groupService.Get(id);
 

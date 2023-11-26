@@ -26,7 +26,7 @@ namespace Api.Controllers.UTILITARIOS
 
         // GET api/<UserController>/5
         [HttpGet("{id}")]
-        public ActionResult<UserSystem> Get(string id)
+        public ActionResult<UserSystem> Get(int id)
         {
             var user = userService.Get(id);
 
@@ -48,7 +48,7 @@ namespace Api.Controllers.UTILITARIOS
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] UserSystem user)
+        public ActionResult Put(int id, [FromBody] UserSystem user)
         {
             var existingUser = userService.Get(id);
 
@@ -64,7 +64,7 @@ namespace Api.Controllers.UTILITARIOS
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
             var user = userService.Get(id);
 
